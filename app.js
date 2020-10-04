@@ -56,9 +56,9 @@ app.get('/detail', function (req, res) {
             default_installments: 6 
         },
         back_urls:{
-            success:"http://localhost:3000/success",
-            pending:"http://localhost:3000/pending",
-            failure:"http://localhost:3000/failed"
+            success:"https://ltorreblanca-mp-commerce-nodej.herokuapp.com/success",
+            pending:"https://ltorreblanca-mp-commerce-nodej.herokuapp.com/pending",
+            failure:"https://ltorreblanca-mp-commerce-nodej.herokuapp.com/failed"
         },
         notification_url: "https://ltorreblanca-mp-commerce-nodej.herokuapp.com/notifications?source_news=webhooks", 
         auto_return: "approved" 
