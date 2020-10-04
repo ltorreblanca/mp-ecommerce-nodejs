@@ -102,6 +102,10 @@ app.get('/failed', function (req, res) {
     res.render('failed', req.query);
 });
 
+app.post('/webhook', function (req, res) {
+    res.status(200).send();
+});
+
 app.use(express.static('assets'));
  
 app.use('/assets', express.static(__dirname + '/assets'));
