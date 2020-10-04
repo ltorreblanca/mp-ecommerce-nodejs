@@ -60,7 +60,7 @@ app.get('/detail', function (req, res) {
             pending:"https://ltorreblanca-mp-commerce-nodej.herokuapp.com/pending",
             failure:"https://ltorreblanca-mp-commerce-nodej.herokuapp.com/failed"
         },
-        notification_url: "https://ltorreblanca-mp-commerce-nodej.herokuapp.com/notifications?source_news=webhooks", 
+        notification_url: "https://ltorreblanca-mp-commerce-nodej.herokuapp.com/webhooks", 
         auto_return: "approved" 
     };
 
