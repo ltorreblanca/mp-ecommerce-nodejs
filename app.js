@@ -88,17 +88,17 @@ app.get('/success', function (req, res) {
         payment_type: req.query.payment_type,
         external_reference:req.query.external_reference
     }
-    console.log("success", req.query);
+    console.log(req.query);
     res.render('success', success);
 });
 
 app.get('/pending', function (req, res) {
-    console.log("pending", req.query);
+    console.log(req.query);
     res.render('pending', req.query);
 });
 
 app.get('/failed', function (req, res) {
-    console.log("Failed", req.query);
+    console.log(req.query);
     res.render('failed', req.query);
 });
 
