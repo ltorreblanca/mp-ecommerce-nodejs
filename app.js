@@ -9,9 +9,10 @@ app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+var id = "";
 
 app.get('/', function (req, res) {
-    res.render('home');
+    res.render('home', { id: id });
 });
 
 mercadopago.configure({
@@ -26,11 +27,12 @@ app.get('/detail', function (req, res) {
                 id: "1234", 
                 title: req.query.title,
                 description: "Dispositivo móvil de Tienda e-commerce",
-                picture_url: req.query.img,
+                picture_url: "https://ltorreblanca-mp-commerce-nodej.herokuapp.com/" + req.query.img.substring(1),
                 category_id: "1234", 
                 quantity: Number(req.query.unit),
                 currency_id: "MXN",
-                unit_price: Number(req.query.price)
+                unit_price: Number(req.query.price),
+                external_reference: "cybervideocenter@gmail.com",
             }
         ],
         external_reference: "cybervideocenter@gmail.com", 
@@ -41,12 +43,11 @@ app.get('/detail', function (req, res) {
             phone: {
                 area_code: "52",
                 number: Number(5549737300)
-            },
-                
+            }, 
             address: {
                 street_name: "Insurgentes Sur",
                 street_number: Number(1602),
-                zip_code: "03940"
+                zip_code: "03940",
             }
         },
         payment_methods:{
@@ -60,22 +61,20 @@ app.get('/detail', function (req, res) {
             pending:"https://ltorreblanca-mp-commerce-nodej.herokuapp.com/pending",
             failure:"https://ltorreblanca-mp-commerce-nodej.herokuapp.com/failed"
         },
-        notification_url: "https://ltorreblanca-mp-commerce-nodej.herokuapp.com/webhooks", 
+        notification_url: "https://ltorreblanca-mp-commerce-nodej.herokuapp.com/webhook", 
         auto_return: "approved" 
     };
 
     mercadopago.preferences.create(preference)
     .then(function(response){
         console.log(response);
+        id = response.body.id;
         // Este valor reemplazará el string "<%= global.id %>" en tu HTML
         req.query.globalID = response.body.id;
         req.query.init_point = response.body.init_point;
         res.render('detail', req.query);
     }).catch(function(error){
         console.log(error);
-        req.query.message = error.message;
-        req.query.cause = {};
-        req.query.cause = error.cause;
         res.render('failed', req.query);
     });
 
@@ -83,12 +82,12 @@ app.get('/detail', function (req, res) {
 });
 
 app.get('/success', function (req, res) {
-    let success ={
-        collection_id: req.query.collection_id,
-        payment_type: req.query.payment_type,
-        external_reference:req.query.external_reference
-    }
     console.log(req.query);
+    let success ={
+        payment_id: req.query.collection_id,
+        payment_method_id: req.query.payment_type,
+        external_reference: req.query.external_reference
+    }
     res.render('success', success);
 });
 
@@ -103,7 +102,8 @@ app.get('/failed', function (req, res) {
 });
 
 app.post('/webhook', function (req, res) {
-    res.status(200).send();
+    console.log(req.query);
+    res.status(200).json("OK");
 });
 
 app.use(express.static('assets'));

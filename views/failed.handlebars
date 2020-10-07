@@ -15,22 +15,20 @@
             </div>
         </div>
     </div>
-    <div class="as-search-results as-filter-open as-category-landing as-desktop row" id="as-search-results">
-        <div class="col-4"> 
-        </div>
-        <div class="col-4"> 
-            <div class="row">
-                <div class="col">
-                    <div class="alert alert-danger" role="alert">
-                    Transaccion fallida
+    <div class="as-search-results as-filter-open as-category-landing as-desktop row .mt-3" id="as-search-results">
+        <center>
+            <div class="col-12 "> 
+                <div class="row">
+                    <div class="col">
+                        <div class="alert alert-failed" role="alert">
+                            <strong>Transaccion fallida</strong>
+                        </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col"><button type="submit" class="mercadopago-button" onclick="window.location.href='/'">Volver a la tienda</button></div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col">{{message}}</div>
-            </div>
-        </div>
-        <div class="col-4"> 
-        </div>
+        </center>
     </div>
 </div>

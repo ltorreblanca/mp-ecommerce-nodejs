@@ -16,8 +16,8 @@
         </div>
     </div>
     <div class="as-search-results as-filter-open as-category-landing as-desktop row .mt-3" id="as-search-results">
-        <div class="col-4"></div>
-        <div class="col-4"> 
+        <center>
+        <div class="col-12 "> 
             <div class="row">
                 <div class="col">
                     <div class="alert alert-success" role="alert">
@@ -26,18 +26,18 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">ID</div>
-                <div class="col">{{collection_id}}</div>
+                <div class="col">ID de Pago: {{payment_id}}</div>
             </div>
             <div class="row">
-                <div class="col">payment_type</div>
-                <div class="col">{{payment_type}}</div>
+                <div class="col">Metodo de Pago: {{payment_method_id}}</div>
             </div>
             <div class="row">
-                <div class="col">external_reference</div>
-                <div class="col">{{external_reference}}</div>
+                <div class="col">Referencia Externa: {{external_reference}}</div>
+            </div>
+            <div class="row">
+                <div class="col"><button type="submit" class="mercadopago-button" onclick="window.location.href='/'">Volver a la tienda</button></div>
             </div>
         </div>
-        <div class="col-4"></div>
+        </center>
     </div>
 </div>

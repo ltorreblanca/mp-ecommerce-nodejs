@@ -79,12 +79,10 @@
                                 </h3>
                             </div>
 
-                            <!--form method="POST">
-                                <script
-                                    src="https://www.mercadopago.com.mx/integrations/v1/web-payment-checkout.js" 
-                                    data-preference-id='{{globalID}}' data-button-label="Pagar la compra">
-                                </script>
-                            </form-->
+                            <!--input type="button" class="mercadopago-button" onclick="window.open('{{init_point}}', '_blank')" value="Pagar la compra" /-->
+
+
+                            <input type="button" class="mercadopago-button" onclick="location.href='{{init_point}}';" value="Pagar la compra"></input>
 
                         </div>
                     </div>
@@ -92,11 +90,11 @@
             </div>
         </div>
 
-        <div class="as-accessories-details column large-6 small-3">
+        <!--div class="as-accessories-details column large-6 small-3">
             <div class="as-accessories">
                     <iframe src="{{ init_point }}" width="100%" height="600"></iframe>
             </div>
-        </div>
+        </div-->
 
     </div>
 </div>
