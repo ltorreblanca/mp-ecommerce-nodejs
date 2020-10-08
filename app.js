@@ -5,7 +5,6 @@ var bodyParser = require('body-parser');
  
 var app = express();
 const fs = require('fs');
-const { log } = require('console');
 
 app.engine('handlebars', exphbs());
 app.set('view engine', 'handlebars');
@@ -86,7 +85,7 @@ app.get('/detail', function (req, res) {
 app.get('/success', function (req, res) {
     if(req.body.data){
         var jsonContent = JSON.stringify(req.body);
-        fs.writeFile("success"+req.body.data.id+".json", jsonContent, 'utf8', function (err) {
+        fs.writeFile("Result success.json", jsonContent, 'utf8', (err) => {
             if (err) {
                 console.log("An error occured while writing JSON Object to File.");
                 return console.log(err);
@@ -116,7 +115,7 @@ app.get('/failed', function (req, res) {
 app.post('/webhook', function (req, res) {
     if(req.body.data){
         var jsonContent = JSON.stringify(req.body);
-        fs.writeFile("webhook"+req.body.data.id+".json", jsonContent, 'utf8', function (err) {
+        fs.writeFile("Result webhook.json", jsonContent, 'utf8', (err) => {
             if (err) {
                 console.log("An error occured while writing JSON Object to File.");
                 return console.log(err);
@@ -125,7 +124,7 @@ app.post('/webhook', function (req, res) {
         });
     }
     console.log(req.query);
-    res.status(200).json("OK");
+    res.status(200).send();
 });
 
 app.use(express.static('assets'));
