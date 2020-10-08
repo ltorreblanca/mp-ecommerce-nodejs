@@ -104,17 +104,7 @@ app.get('/failed', function (req, res) {
 });
 
 app.post('/webhook', function (req, res) {
-    if(req.body.data){
-        var jsonContent = JSON.stringify(req.body);
-        fs.writeFile("Result webhook.json", jsonContent, 'utf8', (err) => {
-            if (err) {
-                console.log("An error occured while writing JSON Object to File.");
-                return console.log(err);
-            }
-            console.log("JSON file has been saved.");
-        });
-    }
-    console.log("BODY : ", req.body);
+    console.log("BODY : ", JSON.stringify(req.body));
     console.log(req.query);
     res.status(200).send();
 });
