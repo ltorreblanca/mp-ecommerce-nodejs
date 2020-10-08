@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 var id = "";
 
 app.get('/', function (req, res) {
-    res.render('home', { id: id });
+    res.render('home');
 });
 
 mercadopago.configure({
@@ -72,6 +72,7 @@ app.get('/detail', function (req, res) {
         id = response.body.id;
         // Este valor reemplazará el string "<%= global.id %>" en tu HTML
         req.query.globalID = response.body.id;
+        req.query.id = response.body.id;
         req.query.init_point = response.body.init_point;
         res.render('detail', req.query);
     }).catch(function(error){
@@ -83,16 +84,6 @@ app.get('/detail', function (req, res) {
 });
 
 app.get('/success', function (req, res) {
-    if(req.body.data){
-        var jsonContent = JSON.stringify(req.body);
-        fs.writeFile("Result success.json", jsonContent, 'utf8', (err) => {
-            if (err) {
-                console.log("An error occured while writing JSON Object to File.");
-                return console.log(err);
-            }
-            console.log("JSON file has been saved.");
-        });
-    }
     console.log(req.query);
     let success ={
         payment_id: req.query.collection_id,
@@ -123,6 +114,7 @@ app.post('/webhook', function (req, res) {
             console.log("JSON file has been saved.");
         });
     }
+    console.log("BODY : ", req.body);
     console.log(req.query);
     res.status(200).send();
 });
